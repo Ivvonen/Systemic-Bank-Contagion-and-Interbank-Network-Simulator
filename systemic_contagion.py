@@ -79,7 +79,7 @@ st.title("🕸️ Systemic Interbank Contagion & Default Cascade Engine")
 st.markdown("Model financial institutions as nodes in an interconnected network and simulate Furfine domino cascades driven by counterparty defaults.")
 
 # Sidebar Controls
-st.sidebar.header("🕹️ Network & Distress Parameters")
+st.sidebar.header("Network & Distress Parameters")
 
 recovery_slider = st.sidebar.slider("Asset Recovery Rate on Default (%)", 0, 100, 40) / 100
 severity_slider = st.sidebar.slider("Interbank Exposure Severity Multiplier", 1.0, 3.0, 1.5, step=0.1)
@@ -100,7 +100,7 @@ base_loans_matrix = np.array([
 # Scale exposures dynamically using the sidebar severity factor
 stressed_loans_matrix = base_loans_matrix * severity_slider
 
-st.sidebar.subheader("🎯 Trigger Idiosyncratic Collapse")
+st.sidebar.subheader("Trigger Idiosyncratic Collapse")
 trigger_choice = st.sidebar.selectbox("Select Institution to Fail Initial Shock", bank_names, index=2)
 trigger_idx = bank_names.index(trigger_choice)
 
@@ -109,7 +109,7 @@ engine = InterbankContagionEngine(bank_names, base_capital, stressed_loans_matri
 report = engine.simulate_systemic_shock(trigger_bank_idx=trigger_idx, recovery_rate=recovery_slider)
 
 # Display KPI Report Cards
-st.markdown("### 🚨 Systemic Fragility Assessment")
+st.markdown("### Systemic Fragility Assessment")
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Initial Instigator Failure", report['Trigger Asset'])
 c2.metric("Total Bank Failures", f"{report['Total Default Count']} / {len(bank_names)}")
@@ -160,7 +160,7 @@ with chart_col:
     st.pyplot(fig, use_container_width=True)
 
 with data_col:
-    st.subheader("📋 Systemic Cascade Progression Log")
+    st.subheader("Systemic Cascade Progression Log")
     st.markdown("Chronological tracking of capital erosion and domino breakdowns:")
     
     st.error(f"**Round 0 (Initial Shock):** {report['Trigger Asset']} suffers a non-recoverable asset write-down and goes insolvent.")
@@ -178,4 +178,4 @@ with data_col:
     if survivors:
         st.success(f"**System Stabilized:** Remaining compliant institutions with safe capital buffers: {', '.join(survivors)}")
     else:
-        st.error("💥 **Complete Systemic Collapse:** Every institution within the testing perimeter has been fully depleted.")
+        st.error("**Complete Systemic Collapse:** Every institution within the testing perimeter has been fully depleted.")
