@@ -75,7 +75,7 @@ class InterbankContagionEngine:
 # --- 2. STREAMLIT INTERFACE & DYNAMIC CONTROL DECK ---
 
 st.set_page_config(page_title="Systemic Contagion Engine", layout="wide")
-st.title("🕸️ Systemic Interbank Contagion & Default Cascade Engine")
+st.title("Systemic Interbank Contagion & Default Cascade Engine")
 st.markdown("Model financial institutions as nodes in an interconnected network and simulate Furfine domino cascades driven by counterparty defaults.")
 
 # Sidebar Controls
@@ -120,7 +120,7 @@ st.markdown("---")
 chart_col, data_col = st.columns([3, 2])
 
 with chart_col:
-    st.subheader("🕸️ Network Topology Contagion Map")
+    st.subheader("Network Topology Contagion Map")
     st.markdown("Directed arrows indicate loan directions (Lender → Borrower). Nodes resize based on remaining Tier 1 capital.")
     
     # Initialize NetworkX Directed Graph
