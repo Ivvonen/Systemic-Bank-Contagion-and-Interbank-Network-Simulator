@@ -106,7 +106,7 @@ trigger_idx = bank_names.index(trigger_choice)
 
 # --- 3. EXECUTE RISK CASCADE MATH ---
 engine = InterbankContagionEngine(bank_names, base_capital, stressed_loans_matrix)
-report = engine.simulate_systemic_shock(trigger_bank_idx=trigger_idx, recovery_rate=recovery_rate_slider)
+report = engine.simulate_systemic_shock(trigger_bank_idx=trigger_idx, recovery_rate=recovery_slider)
 
 # Display KPI Report Cards
 st.markdown("### 🚨 Systemic Fragility Assessment")
